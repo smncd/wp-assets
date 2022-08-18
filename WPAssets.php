@@ -61,6 +61,7 @@ class WPAssets {
     string $media = 'all' 
   ):void {
     $dependencies = self::dependencies( $src, $dependencies );
+    $version      = self::version( $src, $version );
 
     wp_register_style( $handle, $src, $dependencies, $version, $media );
   }
@@ -87,6 +88,7 @@ class WPAssets {
     bool $in_footer = true
   ):void {
     $dependencies = self::dependencies( $src, $dependencies );
+    $version      = self::version( $src, $version );
 
 		wp_register_script( $handle, $src, $dependencies, $version, $in_footer );
   }
@@ -207,6 +209,24 @@ class WPAssets {
     $script_asset = self::script_asset( $src );
 
     return isset($script_asset['dependencies']) ? $script_asset['dependencies'] : [];
+  }
+
+  /**
+   * Check for and return asset version.
+   * 
+   * @param string $src
+   * @param string|null $version
+   * 
+   * @return string
+   * 
+   * @since @next
+   */
+  private static function version( string $src, string|null $version ): string {
+    if (isset($version) && is_string($version)) return $version;
+
+    $script_asset = self::script_asset( $src );
+
+    return isset($script_asset['version']) ? $script_asset['version'] : filemtime( $src );
   }
 
   /**
