@@ -2,6 +2,7 @@
   "name": "smn/wp-assets",
   "type": "library",
   "license": "GPL-3.0",
+  "version": "1.0.0",
   "authors": [
     {
       "name": "Simon Lagerlöf",
