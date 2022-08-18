@@ -60,6 +60,8 @@ class WPAssets {
     string $version = null, 
     string $media = 'all' 
   ):void {
+    $dependencies = self::dependencies( $src, $dependencies );
+
     wp_register_style( $handle, $src, $dependencies, $version, $media );
   }
 
@@ -84,6 +86,8 @@ class WPAssets {
     string $version = null, 
     bool $in_footer = true
   ):void {
+    $dependencies = self::dependencies( $src, $dependencies );
+
 		wp_register_script( $handle, $src, $dependencies, $version, $in_footer );
   }
 
@@ -185,5 +189,48 @@ class WPAssets {
       self::register_script( $handle, $src );
       wp_enqueue_script( $handle );
     } );
+  }
+
+  /**
+   * Check for and return asset dependencies.
+   * 
+   * @param string $src
+   * @param array|null $dependencies
+   * 
+   * @return array
+   * 
+   * @since @next
+   */
+  private static function dependencies( string $src, array|null $dependencies ):array {
+    if (isset($dependencies) && is_array($dependencies) && isset($dependencies[0]) ) return $dependencies;
+
+    $script_asset = self::script_asset( $src );
+
+    return isset($script_asset['dependencies']) ? $script_asset['dependencies'] : [];
+  }
+
+  /**
+   * Check for and return script asset.
+   * 
+   * Mainly useful for Gutenberg blocks and plugins.
+   * 
+   * @param string $src
+   * 
+   * @return array
+   * 
+   * @since @next
+   */
+  private static function script_asset( string $src ): array {
+    if ( pathinfo( $src, PATHINFO_EXTENSION ) !== 'js' ) return [];
+
+    $script_asset = pathinfo( $src, PATHINFO_DIRNAME ) . 'index.asset.php';
+
+    if ( file_exists($script_asset) ) {
+      $script_asset = require $script_asset;
+
+      return $script_asset;
+    } else {
+      return [];
+    }
   }
 }
