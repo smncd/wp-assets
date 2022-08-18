@@ -1,0 +1,16 @@
+{
+  "name": "smn/wp-assets",
+  "type": "library",
+  "license": "GPL-3.0",
+  "authors": [
+    {
+      "name": "Simon Lagerlöf",
+      "email": "contact@smn.codes"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "WPAssets\\": "."
+    }
+  }
+}
