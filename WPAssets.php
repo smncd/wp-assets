@@ -28,7 +28,7 @@ namespace WPAssets;
  * @link https://gitlab.com/smncd/wp-assets
  * @license GNU Public License v3 or later http://www.gnu.org/licenses/gpl-3.0.txt
  * @copyright 2022  Simon Lagerlöf
- * @version 0.1.0
+ * @version 1.0.0
  */
 class WPAssets {
 
@@ -51,7 +51,7 @@ class WPAssets {
    * @return void
    * 
    * @see https://developer.wordpress.org/reference/functions/wp_register_style/
-   * @since @next
+   * @since 1.0.0
    */
   public static function register_style(  
     string $handle, 
@@ -78,7 +78,7 @@ class WPAssets {
    * @return void
    * 
    * @see https://developer.wordpress.org/reference/functions/wp_register_script/
-   * @since @next
+   * @since 1.0.0
    */
   public static function register_script(  
     string $handle, 
@@ -105,7 +105,7 @@ class WPAssets {
    * @return void
    * 
    * @see https://developer.wordpress.org/reference/functions/wp_enqueue_style/
-   * @since @next
+   * @since 1.0.0
    */
   public static function enqueue_style(  
     string $handle, 
@@ -137,7 +137,7 @@ class WPAssets {
    * @return void
    * 
    * @see https://developer.wordpress.org/reference/functions/wp_enqueue_script/
-   * @since @next
+   * @since 1.0.0
    */
   public static function enqueue_script(  
     string $handle, 
@@ -164,7 +164,7 @@ class WPAssets {
    * @param string $src
    * 
    * @see https://developer.wordpress.org/reference/hooks/enqueue_block_editor_assets/
-   * @since @next
+   * @since 1.0.0
    */
   public static function enqueue_editor_style( string $handle, string $src ):void {
     add_action( 'enqueue_block_editor_assets', function() use ( $handle, $src ) {
@@ -182,7 +182,7 @@ class WPAssets {
    * @param string $src
    * 
    * @see https://developer.wordpress.org/reference/hooks/enqueue_block_editor_assets/
-   * @since @next
+   * @since 1.0.0
    */
   public static function enqueue_editor_script( string $handle, string $src ):void {
     add_action( 'enqueue_block_editor_assets', function() use ( $handle, $src ) {
@@ -201,7 +201,7 @@ class WPAssets {
    * 
    * @return array
    * 
-   * @since @next
+   * @since 1.0.0
    */
   private static function dependencies( string $src, array|null $dependencies ):array {
     if (isset($dependencies) && is_array($dependencies) && isset($dependencies[0]) ) return $dependencies;
@@ -219,7 +219,7 @@ class WPAssets {
    * 
    * @return string
    * 
-   * @since @next
+   * @since 1.0.0
    */
   private static function version( string $src, string|null $version ): string {
     if (isset($version) && is_string($version)) return $version;
@@ -238,7 +238,7 @@ class WPAssets {
    * 
    * @return array
    * 
-   * @since @next
+   * @since 1.0.0
    */
   private static function script_asset( string $src ): array {
     if ( pathinfo( $src, PATHINFO_EXTENSION ) !== 'js' ) return [];
