@@ -150,4 +150,40 @@ class WPAssets {
 	  } 
     );
   }
+
+  /**
+   * Enqueue editor stylesheet.
+   * 
+   * @param string $handle
+   * @param string $src
+   * 
+   * @see https://developer.wordpress.org/reference/hooks/enqueue_block_editor_assets/
+   * @since @next
+   */
+  public static function enqueue_editor_style( string $handle, string $src ):void {
+    add_action( 'enqueue_block_editor_assets', function() use ( $handle, $src ) {
+      $handle = static::$handle_prefix . '-editor-' . $handle;
+
+      self::register_style( $handle, $src );
+      wp_enqueue_style( $handle );
+    } );
+  }
+
+  /**
+   * Enqueue editor script.
+   * 
+   * @param string $handle
+   * @param string $src
+   * 
+   * @see https://developer.wordpress.org/reference/hooks/enqueue_block_editor_assets/
+   * @since @next
+   */
+  public static function enqueue_editor_script( string $handle, string $src ):void {
+    add_action( 'enqueue_block_editor_assets', function() use ( $handle, $src ) {
+      $handle = static::$handle_prefix . '-editor-' . $handle;
+
+      self::register_script( $handle, $src );
+      wp_enqueue_script( $handle );
+    } );
+  }
 }
