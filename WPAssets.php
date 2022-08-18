@@ -38,4 +38,52 @@ class WPAssets {
    * @var string
    */
   private static string $handle_prefix = 'wpassets';
+
+  /**
+   * Register stylesheet.
+   * 
+   * @param string $handle
+   * @param string $src
+   * @param array|null $dependencies
+   * @param string|null $version
+   * @param string|null $media
+   * 
+   * @return void
+   * 
+   * @see https://developer.wordpress.org/reference/functions/wp_register_style/
+   * @since @next
+   */
+  public static function register_style(  
+    string $handle, 
+    string $src, 
+    array $dependencies = [], 
+    string $version = null, 
+    string $media = 'all' 
+  ):void {
+    wp_register_style( $handle, $src, $dependencies, $version, $media );
+  }
+
+  /**
+   * Register script.
+   * 
+   * @param string $handle
+   * @param string $src
+   * @param array|null $dependencies
+   * @param string|null $version
+   * @param bool $in_footer
+   * 
+   * @return void
+   * 
+   * @see https://developer.wordpress.org/reference/functions/wp_register_script/
+   * @since @next
+   */
+  public static function register_script(  
+    string $handle, 
+    string $src, 
+    array|null $dependencies = [], 
+    string $version = null, 
+    bool $in_footer = true
+  ):void {
+		wp_register_script( $handle, $src, $dependencies, $version, $in_footer );
+  }
 }
