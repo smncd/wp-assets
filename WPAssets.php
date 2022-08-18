@@ -37,7 +37,7 @@ class WPAssets {
    * 
    * @var string
    */
-  private static string $handle_prefix = 'wpassets';
+  protected static string $handle_prefix = 'wpassets';
 
   /**
    * Register stylesheet.
