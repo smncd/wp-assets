@@ -86,4 +86,68 @@ class WPAssets {
   ):void {
 		wp_register_script( $handle, $src, $dependencies, $version, $in_footer );
   }
+
+  /**
+   * Enqueue stylesheet.
+   * 
+   * @param string $handle
+   * @param string $src
+   * @param array|null $dependencies
+   * @param string|null $version
+   * @param string|null $media
+   * 
+   * @return void
+   * 
+   * @see https://developer.wordpress.org/reference/functions/wp_enqueue_style/
+   * @since @next
+   */
+  public static function enqueue_style(  
+    string $handle, 
+    string $src, 
+    array $dependencies = [], 
+    string $version = null, 
+    string $media = 'all' 
+  ):void {
+    $handle = static::$handle_prefix . '-' . $handle;
+
+    add_action( 
+      'wp_enqueue_scripts', 
+      function() use ( $handle, $src, $dependencies, $version, $media ) {
+        self::register_style( $handle, $src, $dependencies, $version, $media );
+		    wp_enqueue_style( $handle );
+	  } 
+    );
+  }
+
+  /**
+   * Enqueue script.
+   * 
+   * @param string $handle
+   * @param string $src
+   * @param array|null $dependencies
+   * @param string|null $version
+   * @param bool $in_footer
+   * 
+   * @return void
+   * 
+   * @see https://developer.wordpress.org/reference/functions/wp_enqueue_script/
+   * @since @next
+   */
+  public static function enqueue_script(  
+    string $handle, 
+    string $src, 
+    array|null $dependencies = [], 
+    string $version = null, 
+    bool $in_footer = true
+  ):void {
+    $handle = static::$handle_prefix . '-' . $handle;
+
+    add_action( 
+      'wp_enqueue_scripts', 
+      function() use ( $handle, $src, $dependencies, $version, $in_footer ) {
+        self::register_script( $handle, $src, $dependencies, $version, $in_footer );
+		    wp_enqueue_script( $handle );
+	  } 
+    );
+  }
 }
