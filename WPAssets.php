@@ -1,7 +1,7 @@
 <?php
 /**
  *  WPAssets
- *  Copyright (C) 2022  Simon Lagerlöf
+ *  Copyright (C) 2023 Simon Lagerlöf
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ namespace WPAssets;
  * @author Simon Lagerlöf <contact@smn.codes>
  * @link https://gitlab.com/smncd/wp-assets
  * @license GNU Public License v3 or later http://www.gnu.org/licenses/gpl-3.0.txt
- * @copyright 2022  Simon Lagerlöf
+ * @copyright 2023 Simon Lagerlöf
  * @version 1.0.0
  */
 class WPAssets {
