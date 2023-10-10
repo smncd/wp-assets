@@ -23,7 +23,7 @@ namespace WPAssets;
  *
  * Class for managing WordPress theme or plugin assets.
  *
- * @package WPAssets
+ * @package smncd/wp-assets
  * @author Simon Lagerlöf <contact@smn.codes>
  * @link https://gitlab.com/smncd/wp-assets
  * @license GNU Public License v3 or later http://www.gnu.org/licenses/gpl-3.0.txt
@@ -210,7 +210,9 @@ class WPAssets {
      * @since 1.0.0
      */
     private static function dependencies( string $src, array|null $dependencies ): array {
-        if ( isset($dependencies) && is_array($dependencies) && isset($dependencies[0]) ) return $dependencies;
+        if ( isset( $dependencies ) && is_array( $dependencies ) && isset( $dependencies[0] ) ) {
+            return $dependencies;
+        }
 
         $script_asset = self::script_asset( $src );
 
