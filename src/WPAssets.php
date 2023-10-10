@@ -228,11 +228,13 @@ class WPAssets {
      * @since 1.0.0
      */
     private static function version( string $src, string|null $version ): string {
-        if (isset($version) && is_string($version)) return $version;
+        if ( isset( $version ) && is_string( $version ) ) {
+            return $version;
+        }
 
         $script_asset = self::script_asset( $src );
 
-        return isset($script_asset['version']) ? $script_asset['version'] : filemtime( $src );
+        return isset( $script_asset['version'] ) ? $script_asset['version'] : filemtime( $src );
     }
 
     /**
@@ -247,11 +249,13 @@ class WPAssets {
      * @since 1.0.0
      */
     private static function script_asset( string $src ): array {
-        if ( pathinfo( $src, PATHINFO_EXTENSION ) !== 'js' ) return [];
+        if ( pathinfo( $src, PATHINFO_EXTENSION ) !== 'js' ) {
+            return [];
+        }
 
         $script_asset = pathinfo( $src, PATHINFO_DIRNAME ) . 'index.asset.php';
 
-        if ( file_exists($script_asset) ) {
+        if ( file_exists( $script_asset ) ) {
           $script_asset = require $script_asset;
 
           return $script_asset;
