@@ -166,7 +166,7 @@ class WPAssets {
      * @see https://developer.wordpress.org/reference/hooks/enqueue_block_editor_assets/
      * @since 1.0.0
      */
-    public static function enqueue_editor_style( string $handle, string $src ): void {
+    public static function enqueue_block_editor_style( string $handle, string $src ): void {
         add_action(
             'enqueue_block_editor_assets',
             function() use ( $handle, $src ) {
@@ -187,7 +187,7 @@ class WPAssets {
      * @see https://developer.wordpress.org/reference/hooks/enqueue_block_editor_assets/
      * @since 1.0.0
      */
-    public static function enqueue_editor_script( string $handle, string $src ): void {
+    public static function enqueue_block_editor_script( string $handle, string $src ): void {
         add_action(
             'enqueue_block_editor_assets',
             function() use ( $handle, $src ) {
