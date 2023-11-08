@@ -63,6 +63,7 @@ class WPAssets {
         $dependencies = self::dependencies( $src, $dependencies );
         $version      = self::version( $src, $version );
 
+        /** @disregard */
         wp_register_style( $handle, $src, $dependencies, $version, $media );
     }
 
@@ -90,6 +91,7 @@ class WPAssets {
         $dependencies = self::dependencies( $src, $dependencies );
         $version      = self::version( $src, $version );
 
+        /** @disregard */
 		wp_register_script( $handle, $src, $dependencies, $version, $in_footer );
     }
 
@@ -116,10 +118,13 @@ class WPAssets {
     ):  void {
         $handle = static::$handle_prefix . '-' . $handle;
 
+        /** @disregard */
         add_action(
             'wp_enqueue_scripts',
             function() use ( $handle, $src, $dependencies, $version, $media ) {
                 self::register_style( $handle, $src, $dependencies, $version, $media );
+
+                /** @disregard */
 	        	wp_enqueue_style( $handle );
 	        }
         );
@@ -148,10 +153,13 @@ class WPAssets {
     ): void {
         $handle = static::$handle_prefix . '-' . $handle;
 
+        /** @disregard */
         add_action(
             'wp_enqueue_scripts',
             function() use ( $handle, $src, $dependencies, $version, $in_footer ) {
                 self::register_script( $handle, $src, $dependencies, $version, $in_footer );
+
+                /** @disregard */
 	    	    wp_enqueue_script( $handle );
 	        }
         );
@@ -167,12 +175,15 @@ class WPAssets {
      * @since 1.0.0
      */
     public static function enqueue_block_editor_style( string $handle, string $src ): void {
+        /** @disregard */
         add_action(
             'enqueue_block_editor_assets',
             function() use ( $handle, $src ) {
                 $handle = static::$handle_prefix . '-editor-' . $handle;
 
                 self::register_style( $handle, $src );
+
+                /** @disregard */
                 wp_enqueue_style( $handle );
             }
         );
@@ -188,12 +199,15 @@ class WPAssets {
      * @since 1.0.0
      */
     public static function enqueue_block_editor_script( string $handle, string $src ): void {
+        /** @disregard */
         add_action(
             'enqueue_block_editor_assets',
             function() use ( $handle, $src ) {
                 $handle = static::$handle_prefix . '-editor-' . $handle;
 
                 self::register_script( $handle, $src );
+
+                /** @disregard */
                 wp_enqueue_script( $handle );
             }
         );
